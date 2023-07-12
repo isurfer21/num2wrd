@@ -195,13 +195,8 @@ int N2W::Num_in_Word()
 	nested_flag=1;
 
 	char temp[50];
-	/*
-	FILE *in=fopen("PAI\\iPAI.txt","r");
-	fgets(temp,50,in);
-	number=atoi(temp);
-	fclose(in);
-	*/
-	in.open("PAI\\iPAI.txt");
+	
+	in.open("input.txt");
 	if(!in) { strcpy(num_str,"File does not exist!"); goto END; }
 	in.getline(temp,50);
 	number=atol(temp);
@@ -219,7 +214,7 @@ int N2W::Num_in_Word()
 	translate(top+1);
 
     END:
-	out.open("PAI\\oPAI.txt");
+	out.open("output.txt");
 	if(!out) strcpy(num_str,"Can not write in file!");
 	out<<num_str;
 	out.close();

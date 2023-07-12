@@ -1,9 +1,10 @@
 // Number to Word Convertor.
 // Copyright(c)-2006 by Abhishek Kumar. All rights reserved.
 
-#include<fstream.h>
-#include<stdlib.h>
-#include<string.h>
+#include <iostream>
+#include <cstdlib>
+#include <cstring>
+using namespace std;
 
 char num_str[200];
 class N2W
@@ -184,48 +185,41 @@ void N2W::translate(int length)
 
 }
 
-int N2W::Num_in_Word()
-{
-	ifstream in;
-	ofstream out;
+int N2W::Num_in_Word() {
+  int status;
+  long number;
+  top = -1;
+  nested_flag = 1;
 
-	int status;
-	long number;
-	top=-1;
-	nested_flag=1;
+  char temp[50];
 
-	char temp[50];
-	
-	in.open("input.txt");
-	if(!in) { strcpy(num_str,"File does not exist!"); goto END; }
-	in.getline(temp,50);
-	number=atol(temp);
-	in.close();
+  // accept the number from cmd line instead of file
+  cout << "Enter a number: ";
+  cin >> temp;
+  number = atol(temp);
 
-	while(number>0)
-	{
-	  status=push(number%10);
+  while (number > 0) {
+    status = push(number % 10);
 
-	  if(status==0) goto END;
+    if (status == 0)
+      goto END;
 
-	  number = number/10;
-	}
+    number = number / 10;
+  }
 
-	translate(top+1);
+  translate(top + 1);
 
-    END:
-	out.open("output.txt");
-	if(!out) strcpy(num_str,"Can not write in file!");
-	out<<num_str;
-	out.close();
+END:
+  // return the output on terminal instead of file
+  cout << num_str << endl;
 
-	num_str[0] = '\0';
-	//free(temp);
-	return 0;
+  num_str[0] = '\0';
+  // free(temp);
+  return 0;
 }
 
-void main()
-{
- N2W NumberToWords;
- NumberToWords.Num_in_Word();
+int main(int argc, char* argv[]) {
+  N2W NumberToWords;
+  NumberToWords.Num_in_Word();
+  return 0;
 }

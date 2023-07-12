@@ -22,13 +22,19 @@ If the compilation is successful, you will find an executable file with the same
 
 ## Usage
 
+It expects you to create `input.txt` file with a number, e.g.,
+
+```
+987654321
+```
+
 Execute the program via running this command.
 
 ```cmd
 .\num2wrd.exe
 ```
 
-It will ask you to make a move & will show the result on the screen. Enjoy! 😊
+The word equivalent of the given number is saved in `output.txt` file. Enjoy! 😊
 
 ## License
 
